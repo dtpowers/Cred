@@ -1,0 +1,24 @@
+
+  <div class="container table">
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Gender</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+              
+              <% for (var i =0; i < users.length; i++){ %>
+              <% console.log(users[i]["username"])%>
+              <tr>
+                  <td><%= users[i]["username"] %></td>
+                  <td><%= users[i]["gender"] %></td>
+                  <td><%= users[i]["email"] %></td>
+              </tr>
+              <% } %>
+              
+          </tbody>
+        </table>
+  </div>
