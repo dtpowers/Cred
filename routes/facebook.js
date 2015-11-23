@@ -7,10 +7,15 @@ exports.init = function(app) {
   app.put("/user/:username/:gender/:email", newUser);
   app.post("/user/:username/:gender/:email", updateUser);
   app.delete("/user/:username", deleteUser);
+  app.get('/', home);
   }
 
 
+//Index
 
+function home(request, response){
+    response.render('index');
+}
 
 //CREATE
 function newUser(request, response){

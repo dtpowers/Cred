@@ -1,128 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Facebook</title>
-  <meta name="description" content="The official site of Facebook">
-  <meta name="author" content="Mark Zuckerberg">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/styles.css">
-
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   <script src="js/scripts.js"></script>
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" href="images/favicon.jpg">
-
-</head>
-<body style="min-width: 1122px">
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="blue-top">
-      <div class="container">
-          <div class="six columns">
-              <div class="logo">
-                <a href="index.html"><img src="images/facebook-logo.png" style="width:100%"></a>
-              </div>
-          </div>
-          <div class="six columns">
-              <form style="padding-top: 25px;" id="searchForm">
-                  <div class="row">
-                  <input type="text" placeholder="Search Users" id="search" style="margin-right:10px;width: 60%">
-                  <input class="button-primary search" type="submit" value="Search" id="searchUser" style="margin-right:10px;">
-                  <button class="button-primary search" id="listAll">List All</button>
-                  </div>
-              </form>
-
-          </div>
-      </div>
-  </div>
-  <div class="container message">
-      <div class="container" id="input">
-        This is a test message
-      </div>
-        <div class="row update">
-            Edit User
-        </div>
-      <div class="container">
-        <div class="row edit">
-            <form id="editForm">
-              <div class="row">
-              <div class="six columns">
-                  <input class="u-full-width" type="text" placeholder="First Name" id="editFirstName">
-              </div>
-              <div class="six columns">
-                  <input class="u-full-width" type="text" placeholder="Last Name" id="editLastName">
-              </div>
-          </div>
-          <div class="row">
-              <input class="u-full-width" type="email" placeholder="Email" id="editEmail">
-          </div>
-          <div class="row">
-              <span style="padding-right:20px"><input type="radio" name="editGender" value="male">&nbsp;Male</span>
-              <span><input type="radio" name="editGender" value="female">&nbsp;Female</span>
-          </div>
-            <div class="row">
-                <input class="button-primary submit" type="submit" value="Update" id="editUser" style="width: 100px;margin-right: 10px;">
-                <button class="button-primary submit delete" id="deleteUser" style="width: 100px;display:inline-block;line-height:20px;">Delete</button>
-            </div>
-            </form>
-        </div>
-      </div>
-  </div>
-  <!-- Reference to partial !-->
+    <meta charset="utf-8">
+  <title>CR∃D</title>
+  <meta name="description" content="Cred, music for you by you">
+  <meta name="author" content="Donovan Powers">
+   
   
-  <div class="container">
-    <div class="row">
-      <div class="six columns" style="margin-top: 10%">
-        <h4 class="uptext">Connect with friends and the world around you on Facebook.</h4>
-            <p><b>See photos and updates</b> from people you don't care about.</p>
-            <p><b>Share what's new</b> and realize that nobody cares.</p>
-            <p><b>Find more</b> awful memes, religious quotes, and politics.</p>
-      </div>
-      <div class="six columns" style="margin-top: 10%">
-          <h2><b>Sign Up</b></h2>
-          <form id="userForm">
-          <div class="row">
-              <div class="six columns">
-                  <input class="u-full-width" type="text" placeholder="First Name" id="firstName">
-              </div>
-              <div class="six columns">
-                  <input class="u-full-width" type="text" placeholder="Last Name" id="lastName">
-              </div>
-          </div>
-          <div class="row">
-              <input class="u-full-width" type="email" placeholder="Email" id="email">
-          </div>
-          <div class="row">
-              <span style="padding-right:20px"><input type="radio" name="gender" value="male">&nbsp;Male</span>
-              <span><input type="radio" name="gender" value="female">&nbsp;Female</span>
-          </div>
-          <div class="row">
-              <p style="font-size:10px;">By clicking Sign Up, you agree to sign your life away given our <a href="">Terms</a> and that you have approved our <a href="">Data Policy</a>, which sells your personal information to any corporation with enough money.</p>
-          </div>
-          <div class="row">
-              <input class="button-primary submit" type="submit" value="Sign Up" id="submitUser">
-          </div>
-          </form>
-      </div>
-    </div>
-  </div>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
+   
+   
+  <link rel="icon" href="images/favic.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+
+  <body>
+
+
+
+      
+      <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+                <p class="navbar-text navbar-right">Signed in as  - <a href="#" class="navbar-link">Sign out?</a></p>
+                <p class="navbar-text navbar-left">Spend Cred </p>
+                 <p class="navbar-text navbar-left">Upload a track </p>
+                  <p class="navbar-text">Cr∃d Score : </p>
+          </div>
+                  
+                
+      </nav>
+      <div class="container song-info">
+        <h3>Now playing</h3>
+      </div>
+
+     
+
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="col-md-2 side">
+
+           <ul id="que">
+              <li>test</li>
+            </ul>
+          </div>  
+          <div class="col-md-8">
+            <img src="images/cover.png" class="art">
+          </div>
+          <div class="col-md-2 side">
+           <h1 class="chatHead"> Whats on your mind?</h1>
+            <ul id="messages">
+                <li>test</li>
+              </ul>
+            <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+            </form>
+            </div>   
+
+        </div> 
+      </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Notice that socket.io adds a path to its client-side js that is not in /public -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- This is my example client-side javascript that uses socket.io -->
+  <script src="/js/clientSocket.js"></script>
+     
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="js/scripts.js"></script>
+   
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
