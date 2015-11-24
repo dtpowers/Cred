@@ -40,9 +40,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
 }
 
 .side{
-    background: #ffffff
+    background: #ffffff;
+    
+    
 
 
+}
+
+#chat{
+    background: #ffffff;
+    overflow-y: auto;
+    height: 300px;
 }
 
 #messages{

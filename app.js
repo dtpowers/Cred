@@ -1,7 +1,7 @@
 var morgan = require('morgan');
 var fs = require('fs');
 var path = require('path');
-
+var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 
@@ -42,4 +42,13 @@ var sio = require('socket.io')(httpServer);
 // The server socket.io code is in the socketio directory.
 require('./socketio/serverSocket.js').init(sio);
 
-httpServer.listen(50000, function() {console.log('Listening on 50000');});
+/*
+ * OpenShift will provide environment variables indicating the IP 
+ * address and PORT to use.  If those variables are not available
+ * (e.g. when you are testing the application on your laptop) then
+ * use default values of localhost (127.0.0.1) and 50000 (arbitrary).
+ */
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 50000;
+
+httpServer.listen(port, ipaddress, function() {console.log('Listening on '+ipaddress+':'+port);});

@@ -28,4 +28,5 @@ $('#sideChat').submit(function(event){
 
 socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
+    $('#chat').scrollTop($('#chat')[0].scrollHeight);
 });

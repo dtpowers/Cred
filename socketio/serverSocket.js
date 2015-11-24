@@ -6,7 +6,6 @@ console.log("IO initialized");
 
 io.on('connection', function(socket){
 	++GuestNum;  
-	console.log("new connection " + {number : GuestNum});
     io.emit('guest', {number : GuestNum});
 	socket.on('chat message', function(msg){
      io.emit('chat message', msg);
