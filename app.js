@@ -37,7 +37,7 @@ app.use(function(req, res) {
 
 // Boilerplate for setting up socket.io alongside Express.
 var httpServer = require('http').createServer(app);
-var sio =require('socket.io')(httpServer);
+var sio = require('socket.io')(httpServer);
 
 // The server socket.io code is in the socketio directory.
 require('./socketio/serverSocket.js').init(sio);
