@@ -115,7 +115,7 @@ exports.update = function(collection, filter, update, callback) {
 /********** CRUD Delete -> Mongo deleteOne or deleteMany **********************
  * The delete model is left as an exercise for you to define.
  */
-
+/*
 exports.delete= function(collection, filter, delete, callback) {
   mongoDB
     .collection(collection)     // The collection to update
@@ -130,7 +130,7 @@ exports.delete= function(collection, filter, delete, callback) {
                  +' and added '+ status.upsertedCount+" documents");
         });
 }
-
+*/
 
 
 var doError = function(e) {

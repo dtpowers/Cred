@@ -3,18 +3,19 @@ var mongoModel = require("../models/mongoModel.js")
 
 // Define the routes for this controller
 exports.init = function(app) {
-  app.get('/', index); // essentially the app welcome page
-  // The collection parameter maps directly to the mongoDB collection
-  app.put('/:collection', doCreate); // CRUD Create
+
   app.get('/:collection', doRetrieve); // CRUD Retrieve
+  
+  app.put('/:collection', doCreate); // CRUD Create
+  
   app.post('/:collection', doUpdate); // CRUD Update
+
+  app.delete('/:collection', doDelete); //CRUD Delete
+
   // The CRUD Delete path is left for you to define
 }
 
-// No path:  display instructions for use
-index = function(req, res) {
-  res.render('help', {title: 'MongoDB Test'})
-};
+
 
 /********** CRUD Create *******************************************************
  * Take the object defined in the request body and do the Create
@@ -55,9 +56,8 @@ doCreate = function(req, res){
   mongoModel.create ( req.params.collection, 
 	                    req.body,
 		                  function(result) {
-		                    // result equal to true means create was successful
-  		                  var success = (result ? "Create successful" : "Create unsuccessful");
-	  	                  res.render('message', {title: 'Mongo Demo', obj: success});
+		                  
+	  	                 
      		                console.log("2. Done with callback in dbRoutes create");
 		                  });
   console.log("3. Done with doCreate in dbRoutes");
@@ -83,13 +83,7 @@ doRetrieve = function(req, res){
     req.params.collection, 
     req.query,
 		function(modelData) {
-		  if (modelData.length) {
-        res.render('results',{title: 'Mongo Demo', obj: modelData});
-      } else {
-        var message = "No documents with "+JSON.stringify(req.query)+ 
-                      " in collection "+req.params.collection+" found.";
-        res.render('message', {title: 'Mongo Demo', obj: message});
-      }
+		  res.send(modelData);
 		});
 }
 
@@ -131,32 +125,25 @@ doUpdate = function(req, res){
 /********** CRUD Delete *******************************************************
  * The delete route handler is left as an exercise for you to define.
  */
+
 doDelete = function(req, res){
   // if there is no filter to select documents to update, select all documents
   var filter = req.body.find ? JSON.parse(req.body.find) : {};
   // if there no update operation defined, render an error page.
-  if (!req.body.delete) {
+  if (!req.body.del) {
     res.render('message', {title: 'Mongo Demo', obj: "No delete operation defined"});
     return;
   }
-  var delete = JSON.parse(req.body.delete);
-  /*
-   * Call the model Update with:
-   *  - The collection to update
-   *  - The filter to select what documents to update
-   *  - The update operation
-   *    E.g. the request body string:
-   *      find={"name":"pear"}&update={"$set":{"leaves":"green"}}
-   *      becomes filter={"name":"pear"}
-   *      and update={"$set":{"leaves":"green"}}
-   *  - As discussed above, an anonymous callback function to be called by the
-   *    model once the update has been successful.
-   */
-  mongoModel.delete(  req.params.collection, filter, delete,
+  var del = JSON.parse(req.body.del);
+
+  mongoModel.delete(  req.params.collection, filter, del,
                       function(status) {
                         res.render('message',{title: 'Mongo Demo', obj: status});
                       });
 }
+
+
+
 
 /*
  * How to test:

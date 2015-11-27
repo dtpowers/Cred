@@ -18,6 +18,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
     background-attachment: fixed;
 }
 
+#register{
+  display: none;
+
+}
+
+
 .art{
    width: 50%;
    
