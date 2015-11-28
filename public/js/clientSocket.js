@@ -23,13 +23,24 @@ function relog(){
 
 $("#regButton").click(function(e){
 	e.preventDefault;
-	console.log("show form");
+
 	$("#register").toggle();
+	$("#navvv").css({"margin-bottom" : "0"});
+
 
 
 });
 
 
+$("#signIn").click(function(e){
+	e.preventDefault;
+	
+	$("#logForm").toggle();
+	$("#navvv").css({"margin-bottom" : "0"});
+
+
+
+});
 
 
 function addGuestInfo(){
@@ -39,6 +50,10 @@ function addGuestInfo(){
 function addUserInfo(){
 	$("#signedInAs").html("Signed in as " + User.username); 
 	$("#credScore").html("Cred Score: " + User.cred);
+	$("#signOut").show();
+	$("#regButton").hide();
+	$("#signIn").hide();
+
 }
 
 
@@ -56,10 +71,18 @@ function logIn(username, password){
     	url: "/users/?username=" + username + "&password=" + password,
     	type: 'GET',
     	success: function(result) {
-    		localStorage.username = User.username;
-    		localStorage.password = User.password;
-    		localStorage.cred = User.cred;
-    		relog();
+    		if (result[0]) {
+	    		localStorage.username = result[0].username;
+	    		localStorage.password = result[0].password;
+	    		console.log(result[0]);
+	    		localStorage.cred = result[0].cred;
+	    		$(".form").hide();
+	    		relog();
+    		}
+    		else{
+    			alert("That username or password is incorrect");
+    		}
+    		
     	}
     });
 	
@@ -80,6 +103,14 @@ function logIn(username, password){
             location.reload();
     	}
 	});
+    }); 
+
+  $("#logForm").submit(function(e){
+    	e.preventDefault();
+    	username = $("#getUsername").val();
+    	pw = $("#getUserPass").val();
+    	logIn(username, pw);
+      
     }); 
 
 //for chat, if there is no use get guest number

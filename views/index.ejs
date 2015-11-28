@@ -27,12 +27,13 @@
 
 
       
-      <nav class="navbar navbar-default navbar-static-top">
+      <nav class="navbar navbar-default navbar-static-top" id="navvv">
           <div class="container">
-            <p class="navbar-text navbar-right" id="signOut"> <button> Sign Out </button></p>
-            <p class="navbar-text navbar-right" id="regButton"> <button> Register? </button></p>
+            <p class="navbar-text navbar-right" id="signOut"> <button class="myButton"> Sign Out </button></p>
+            <p class="navbar-text navbar-right" id="regButton"> <button class="myButton"> Register? </button></p>
 
-                <p class="navbar-text navbar-right" id="signedInAs"> <button> Log in? </button></p>
+                <p class="navbar-text navbar-right" id="signIn"> <button class="myButton"> Log in? </button></p>
+                <p class="navbar-text navbar-right" id="signedInAs"></p>
 
                 <p class="navbar-text navbar-left">Spend Cred </p>
                  <p class="navbar-text navbar-left">Upload a track </p>
@@ -43,19 +44,35 @@
                 
       </nav>
 
-      <div class="container" id="register">
+      <div class="container-fliud form" id="register">
         <form>
 
             <input class="u-full-width" type="text" placeholder="Username" id="setUsername">
               
              <input class="u-full-width" type="text" placeholder="Password" id="setUserPass">
-            <div class="row">
-                <input class="button-primary submit" type="submit" value="register" id="registerUser" style="width: 100px;margin-right: 10px;">
+       
+                <input class="myButton submit" type="submit" value="register" id="registerUser" style="width: 100px;margin-right: 10px;">
                 
-            </div>
+        
 
         </form>
       </div>
+
+      <div class="container-fliud form" id="logForm">
+        <form>
+
+            <input class="u-full-width" type="text" placeholder="Username" id="getUsername">
+              
+             <input class="u-full-width" type="text" placeholder="Password" id="getUserPass">
+       
+                <input class="myButton submit" type="submit" value="login" id="logUser" style="width: 100px;margin-right: 10px;">
+                
+        
+
+        </form>
+      </div>
+
+
       <div class="container song-info">
         <h3>Now playing</h3>
       </div>
