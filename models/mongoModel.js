@@ -103,7 +103,7 @@ exports.update = function(collection, filter, update, callback) {
     .updateMany(                // Use updateOne to only update 1 document
       filter,                   // Filter selects which documents to update
       update,                   // The update operation
-      {upsert:true},            // If document not found, insert one with this update
+      {upsert:false},            // If document not found, insert one with this update
                                 // Set upsert false (default) to not do insert
       function(err, status) {   // Callback upon error or success
         if (err) doError(err);
@@ -115,22 +115,19 @@ exports.update = function(collection, filter, update, callback) {
 /********** CRUD Delete -> Mongo deleteOne or deleteMany **********************
  * The delete model is left as an exercise for you to define.
  */
-/*
-exports.delete= function(collection, filter, delete, callback) {
+
+exports.Mdelete= function(collection, filter,  callback) {
   mongoDB
-    .collection(collection)     // The collection to update
-    .deleteMany(                // Use updateOne to only update 1 document
-      filter,                   // Filter selects which documents to update
-      delete,                   // The update operation
-                 // If document not found, insert one with this update
-                                // Set upsert false (default) to not do insert
+    .collection(collection)     
+    .deleteOne( 
+      filter,                              
       function(err, status) {   // Callback upon error or success
         if (err) doError(err);
         callback('Modified '+ status.modifiedCount 
                  +' and added '+ status.upsertedCount+" documents");
         });
 }
-*/
+
 
 
 var doError = function(e) {

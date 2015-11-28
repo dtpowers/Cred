@@ -21,13 +21,66 @@ function relog(){
 	
 }
 
+
+
+$("#spendCred").click(function(e){
+	//html changes
+
+	//change cred in db and locally
+	//hard value for now, will be value of request later
+	spendCred(20);
+
+});
+
+function spendCred(amount){
+
+	var newTotal = User.cred - amount;
+	if (newTotal < 0) {
+		alert("You dont have enough cred, Loser.");
+		return;
+	};
+	filter = 'find={"username":"' + User.username; 
+	filter += '", "password" : "' + User.password; 
+	filter += '"}&update={"$set":{"cred":"' +  newTotal + '"}}';
+	
+
+	 $.ajax({
+		url: "/users/",
+		data: filter,
+		type: 'POST',
+		success: function(result) {
+			console.log(result);
+			logIn(User.username, User.password);  
+		}
+	});
+
+
+}
+
+
+
+
+function removeUser(){
+	filter = 'find={"username":"' + User.username; 
+	filter += '", "password" : "' + User.password; 
+	filter += '"}';
+
+	 $.ajax({
+		url: "/users/",
+		data: filter,
+		type: 'DELETE',
+		success: function(result) {
+			console.log(result);
+			logOut();  
+		}
+	});
+}
+
 $("#regButton").click(function(e){
 	e.preventDefault;
 
 	$("#register").toggle();
 	$("#navvv").css({"margin-bottom" : "0"});
-
-
 
 });
 
@@ -66,7 +119,7 @@ function logOut(){
 //this function pulls the matchins user/ pass pair from the db
 //and stores them locally + in browser
 function logIn(username, password){
-     
+  
 	 $.ajax({
     	url: "/users/?username=" + username + "&password=" + password,
     	type: 'GET',
@@ -89,20 +142,44 @@ function logIn(username, password){
 }
 
 
-
+//add new user to db
+//before add, ensure its not a duplicate user
  $("#register").submit(function(e){
     	e.preventDefault();
     	username = $("#setUsername").val();
     	pw = $("#setUserPass").val();
-        $.ajax({
-    	url: "/users/" + "username=" +username + "&password=" + pw + "&cred=0",
-    	type: 'PUT',
+    	var tempUser = {};
+    	tempUser.username = username;
+    	tempUser.password = pw;
+    	tempUser.cred = 100;
+    	//this validation should be server side
+    	//but I cant get that to work, so for now we are doing it client side
+    	//this has obvious security concerns and should be fixed for production
+    	 $.ajax({
+    	url: "/users/?username=" + username,
+    	type: 'GET',
     	success: function(result) {
-        	logIn(username, pw);
-        	console.log("Logging in..."); 
-            location.reload();
+    		if (result[0]) {
+    			alert("that username is taken");
+    			return;
+	    		
+    		}
+    		else{
+    			 $.ajax({
+			    	url: "/users/",
+			    	data: tempUser,
+			    	type: 'PUT',
+			    	success: function(result) {
+			        	logIn(username, pw);
+			        	console.log("Logging in..."); 
+			            
+			    	}
+				});
+    		}
+    		
     	}
-	});
+    });
+       
     }); 
 
   $("#logForm").submit(function(e){

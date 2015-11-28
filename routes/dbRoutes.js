@@ -38,7 +38,7 @@ doCreate = function(req, res){
    * properties in the req.body object.
    */
   if (Object.keys(req.body).length == 0) {
-    res.render('message', {title: 'Mongo Demo', obj: "No create message body found"});
+    res.send(false);
     return;
   }
   /*
@@ -53,11 +53,14 @@ doCreate = function(req, res){
    *    is successful, a callback function is provided for the model to 
    *    call in the future whenever the create has completed.
    */
+
+
   mongoModel.create ( req.params.collection, 
 	                    req.body,
 		                  function(result) {
-		                  
-	  	                 
+                      res.send(result);
+                     
+		                
      		                console.log("2. Done with callback in dbRoutes create");
 		                  });
   console.log("3. Done with doCreate in dbRoutes");
@@ -118,7 +121,7 @@ doUpdate = function(req, res){
    */
   mongoModel.update(  req.params.collection, filter, update,
 		                  function(status) {
-              				  res.render('message',{title: 'Mongo Demo', obj: status});
+              				  res.send(status);
 		                  });
 }
 
@@ -129,14 +132,9 @@ doUpdate = function(req, res){
 doDelete = function(req, res){
   // if there is no filter to select documents to update, select all documents
   var filter = req.body.find ? JSON.parse(req.body.find) : {};
-  // if there no update operation defined, render an error page.
-  if (!req.body.del) {
-    res.render('message', {title: 'Mongo Demo', obj: "No delete operation defined"});
-    return;
-  }
-  var del = JSON.parse(req.body.del);
+  
 
-  mongoModel.delete(  req.params.collection, filter, del,
+  mongoModel.Mdelete(  req.params.collection, filter, 
                       function(status) {
                         res.render('message',{title: 'Mongo Demo', obj: status});
                       });
