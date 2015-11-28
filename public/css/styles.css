@@ -115,7 +115,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
 
 
 
+#foot{
 
+  color: #F1DFF2;
+  font-family: 'Vapor';
+  font-size: 8;
+  padding-top: 30px;
+}
 
 .form{
   background: #ffffff;

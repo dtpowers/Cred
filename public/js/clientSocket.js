@@ -2,7 +2,7 @@
 var socket = io();
 var User = {};
 var GuestNum = 0;
-
+//update system information on page refresh to avoid errors
 $().ready(relog);
 
 $("#signOut").click(logOut);
@@ -22,7 +22,7 @@ function relog(){
 }
 
 
-
+//plaecholder for spend cred options
 $("#spendCred").click(function(e){
 	//html changes
 
@@ -32,6 +32,7 @@ $("#spendCred").click(function(e){
 
 });
 
+//update db with new cred amount after spending
 function spendCred(amount){
 
 	var newTotal = User.cred - amount;
@@ -57,8 +58,11 @@ function spendCred(amount){
 
 }
 
-
-
+//delete account
+$("#foot").click(function(e){
+	e.preventDefault;
+	removeUser();
+});
 
 function removeUser(){
 	filter = 'find={"username":"' + User.username; 
@@ -75,7 +79,7 @@ function removeUser(){
 		}
 	});
 }
-
+//hide/show registration form
 $("#regButton").click(function(e){
 	e.preventDefault;
 
@@ -84,7 +88,7 @@ $("#regButton").click(function(e){
 
 });
 
-
+//hide/show sign in form
 $("#signIn").click(function(e){
 	e.preventDefault;
 	
@@ -99,10 +103,13 @@ $("#signIn").click(function(e){
 function addGuestInfo(){
 	return;
 }
-
+//on sign in update page with info for user
 function addUserInfo(){
 	$("#signedInAs").html("Signed in as " + User.username); 
 	$("#credScore").html("Cred Score: " + User.cred);
+	$("#spendCred").html("Spend Cred");
+	$("#uploadTrack").html("Upload a Track");
+	$("#foot").html("delete my account");
 	$("#signOut").show();
 	$("#regButton").hide();
 	$("#signIn").hide();
@@ -182,6 +189,7 @@ function logIn(username, password){
        
     }); 
 
+//form handler for log in
   $("#logForm").submit(function(e){
     	e.preventDefault();
     	username = $("#getUsername").val();
@@ -197,7 +205,7 @@ socket.on('guest', function(data){
 	    }
 
 });
-
+//submit a new chat message and emit to all other users
 $('#sideChat').submit(function(event){
 	if (User.username != null) {
         id = User.username;
@@ -212,7 +220,7 @@ $('#sideChat').submit(function(event){
     return false;
 });
       
-
+//recieve new chat message
 socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
     $('#chat').scrollTop($('#chat')[0].scrollHeight);
