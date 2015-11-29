@@ -2,8 +2,18 @@
 var socket = io();
 var User = {};
 var GuestNum = 0;
+var SongQue = [];
+var CurrentSong = {};
 //update system information on page refresh to avoid errors
-$().ready(relog);
+
+//page load requirments
+$().ready(function(){
+	relog(); 
+	//get song playing info
+
+
+
+});
 
 $("#signOut").click(logOut);
 //for keeping credentials during a session
@@ -214,6 +224,35 @@ socket.on('guest', function(data){
 	    }
 
 });
+
+//for current song information update
+socket.on('getPlaylist', function(data){
+		console.log('get playlist fired');
+	   CurrentSong = data.currentSong;
+	   SongQue = data.songQue;
+	
+	   
+	if($.isEmptyObject(CurrentSong)){
+		$("#title").html("Que empty :( upload a song!");
+		
+	}
+	else{
+		$("#title").html(CurrentSong.title + " - " + CurrentSong.artist);
+		$("#coverArt").attr("src", data.currentSong.image);
+		   console.log(data.currentSong.image);
+		
+	}
+	updatePageQue(data)
+
+
+});
+
+function updatePageQue(data){
+
+	return;
+
+}
+
 //submit a new chat message and emit to all other users
 $('#sideChat').submit(function(event){
 	if (User.username != null) {
@@ -234,3 +273,4 @@ socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
     $('#chat').scrollTop($('#chat')[0].scrollHeight);
 });
+

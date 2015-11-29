@@ -53,9 +53,6 @@ var cpUpload = upload.fields([{ name: 'cover', maxCount: 1 }, { name: 'song', ma
 app.post('/uploadSong', cpUpload, function (req, res, next) {
 	console.log("uploading song...");
 	ioMod.addSong(req, res);
- 
- 
-
 })
 
 
