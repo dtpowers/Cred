@@ -180,6 +180,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
     height: 300px;
 }
 
+#que{
+    list-style-type: none; 
+margin: 0; 
+padding: 0; 
+    background: #ffffff;
+    overflow-y: auto;
+    height: 370px;
+    font-family: 'Vapor';
+}
+
 #messages{
 list-style-type: none; 
 margin: 0; 
@@ -194,6 +204,16 @@ padding: 0;
 
 #messages li{
   padding: 5px 10px; 
+
+}
+
+#que li:nth-child(odd){
+   background: #eee; 
+
+}
+
+#que li{
+  padding: 5px 0px; 
 
 }
 

@@ -247,9 +247,16 @@ socket.on('getPlaylist', function(data){
 
 });
 
+//fill que on left side of screen
 function updatePageQue(data){
-
-	return;
+	var song = "";
+	console.log(data);
+	var sq = data.songQue
+	for(i = 0; i < data.songQue.length; i++){
+		console.log(sq);
+		song = sq[0].title + " - " + sq[0].artist;
+		$('#que').append($('<li>').text(song));
+	}
 
 }
 
