@@ -3,6 +3,19 @@ var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
 var express = require('express');
+var multer  = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads');
+  },
+  filename: function (req, file, cb) {
+  	console.log(file.originalname);
+    cb(null, file.originalname);
+  }
+})
+var upload = multer({storage : storage});
+
+
 var app = express();
 
 
@@ -25,6 +38,26 @@ fs.readdirSync('./routes').forEach(function (file){
   	require('./routes/'+ file).init(app);
   	}
 });
+// Boilerplate for setting up socket.io alongside Express.
+var httpServer = require('http').createServer(app);
+var sio = require('socket.io')(httpServer);
+
+// The server socket.io code is in the socketio directory.
+require('./socketio/serverSocket.js').init(sio);
+
+ioMod = require('./socketio/serverSocket.js');
+
+//file uploads
+
+var cpUpload = upload.fields([{ name: 'cover', maxCount: 1 }, { name: 'song', maxCount: 1 }]);
+app.post('/uploadSong', cpUpload, function (req, res, next) {
+	console.log("uploading song...");
+	ioMod.addSong(req, res);
+ 
+ 
+
+})
+
 
 // Handle static files
 app.use(express.static(__dirname + '/public'));
@@ -38,12 +71,9 @@ app.use(function(req, res) {
   res.status(404).render('error', { 'message': message });
 });
 
-// Boilerplate for setting up socket.io alongside Express.
-var httpServer = require('http').createServer(app);
-var sio = require('socket.io')(httpServer);
 
-// The server socket.io code is in the socketio directory.
-require('./socketio/serverSocket.js').init(sio);
+
+
 
 /*
  * OpenShift will provide environment variables indicating the IP 

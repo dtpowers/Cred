@@ -4,13 +4,13 @@ var mongoModel = require("../models/mongoModel.js")
 // Define the routes for this controller
 exports.init = function(app) {
 
-  app.get('/:collection', doRetrieve); // CRUD Retrieve
+  app.get('/users/:collection', doRetrieve); // CRUD Retrieve
   
-  app.put('/:collection', doCreate); // CRUD Create
+  app.put('/users/:collection', doCreate); // CRUD Create
   
-  app.post('/:collection', doUpdate); // CRUD Update
+  app.post('/users/:collection', doUpdate); // CRUD Update
 
-  app.delete('/:collection', doDelete); //CRUD Delete
+  app.delete('/users/:collection', doDelete); //CRUD Delete
 
   // The CRUD Delete path is left for you to define
 }

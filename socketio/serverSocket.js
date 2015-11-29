@@ -1,7 +1,7 @@
 exports.init = function(io) {
 
 var GuestNum = 0; // keep track of the number of guest for temp chat id's
-var playlist = [];
+songQue = [];
 	
 console.log("IO initialized");
 
@@ -18,16 +18,30 @@ io.on('connection', function(socket){
 });
 
 
-//This controls all the playlist logic
+
 
 
 
 
 }
 
-function addSong(socket){
-	return;
+
+
+
+
+exports.addSong = function(req, res) {
+    var song = {}
+    song.image = req.files['cover'][0].path;
+    song.music = req.files['song'][0].path;
+    song.title = req.body.title;
+    song.artist = req.body.artist;
+    songQue.push(song);
+    res.send(songQue);
 }
+
+
+
+
 
 
 

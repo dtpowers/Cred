@@ -46,7 +46,7 @@ function spendCred(amount){
 	
 
 	 $.ajax({
-		url: "/users/",
+		url: "/users/users/",
 		data: filter,
 		type: 'POST',
 		success: function(result) {
@@ -70,7 +70,7 @@ function removeUser(){
 	filter += '"}';
 
 	 $.ajax({
-		url: "/users/",
+		url: "/users/users/",
 		data: filter,
 		type: 'DELETE',
 		success: function(result) {
@@ -84,6 +84,15 @@ $("#regButton").click(function(e){
 	e.preventDefault;
 
 	$("#register").toggle();
+	$("#navvv").css({"margin-bottom" : "0"});
+
+});
+
+//hide/show registration form
+$("#uploadTrack").click(function(e){
+	e.preventDefault;
+
+	$("#uploadForm").toggle();
 	$("#navvv").css({"margin-bottom" : "0"});
 
 });
@@ -128,7 +137,7 @@ function logOut(){
 function logIn(username, password){
   
 	 $.ajax({
-    	url: "/users/?username=" + username + "&password=" + password,
+    	url: "/users/users/?username=" + username + "&password=" + password,
     	type: 'GET',
     	success: function(result) {
     		if (result[0]) {
@@ -163,7 +172,7 @@ function logIn(username, password){
     	//but I cant get that to work, so for now we are doing it client side
     	//this has obvious security concerns and should be fixed for production
     	 $.ajax({
-    	url: "/users/?username=" + username,
+    	url: "users/users/?username=" + username,
     	type: 'GET',
     	success: function(result) {
     		if (result[0]) {
@@ -173,7 +182,7 @@ function logIn(username, password){
     		}
     		else{
     			 $.ajax({
-			    	url: "/users/",
+			    	url: "/users/users/",
 			    	data: tempUser,
 			    	type: 'PUT',
 			    	success: function(result) {

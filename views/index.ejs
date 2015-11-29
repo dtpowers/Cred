@@ -67,11 +67,22 @@
        
                 <input class="myButton submit" type="submit" value="login" id="logUser" style="width: 100px;margin-right: 10px;">
                 
-        
+ </form>
 
-        </form>
       </div>
+<div id = "uploadForm" class="container-fliud form" >
 
+       
+            
+    <form enctype = "multipart/form-data" action = "/uploadSong" method = "post">
+    <input type="file" name="cover">
+    <input type="file" name="song">
+    <input type="text" name="title" placeholder="Song Name">
+    <input type="text" name="artist" placeholder="Artist">
+    <input type="submit" value="Upload" name="submit">
+    </form>
+
+</div>
 
       <div class="container song-info">
         <h3>Now playing</h3>
