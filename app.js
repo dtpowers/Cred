@@ -4,6 +4,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var express = require('express');
 var multer  = require('multer');
+var probe = require('node-ffprobe');
+ 
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/uploads');

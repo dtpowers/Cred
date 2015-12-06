@@ -1,4 +1,3 @@
-
 var socket = io();
 var User = {};
 var GuestNum = 0;
