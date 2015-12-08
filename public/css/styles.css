@@ -30,8 +30,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
 
 #uploadForm{
   display: none;
+ 
+
 
 }
+
+input{
+   text-align: center;
+}
+
 
 
 .myButton {
