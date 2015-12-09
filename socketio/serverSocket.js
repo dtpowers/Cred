@@ -44,6 +44,7 @@ exports.addSong = function(req, res) {
     song.artist = req.body.artist;
     song.user = req.body.user;
     song.path = req.files['song'][0].path;
+    song.imagePath = req.files['cover'][0].path;
     mp3Duration(req.files['song'][0].path, function (err, duration) {
     if (err){ 
       song.duration = "fail";
@@ -90,10 +91,14 @@ playSong = function(){
     io.emit('getPlaylist', {songQue : songQue, currentSong: songQue[0], startTime: songStartTime});
   }
 }
+var fs = require('fs');
+
 
 songOver = function(){
     console.log("song ended ");
     clearTimeout(tOut);
+    fs.unlink(songQue[0].path);
+    fs.unlink(songQue[0].imagePath);
     nextSong();
 }
 
