@@ -1,13 +1,15 @@
 {
-  "name": "cred",
+  "name": "Cred",
   "version": "1.0.0",
-  "description": "credddd",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "M2C Simple Static Server",
+  "author": {
+    "name": "Donovan Powers",
+    "url": "donovanpowers.me"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dtpowers/cred"
+  },
   "engines": {
     "node": ">= 0.10.0",
     "npm": ">= 1.0.0"
@@ -21,5 +23,9 @@
     "morgan": "^1.6.1",
     "mp3-duration": "^1.0.5",
     "multer": "^1.1.0"
-  }
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+  "private": true,
+  "main": "server.js"
 }
