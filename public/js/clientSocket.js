@@ -48,7 +48,7 @@ $("#spendCred").click(function(e){
 $("#skipSong").click(function(e){
 	e.preventDefault;
 
-	if(User.cred > 20){
+	if(User.cred >= 20){
 		socket.emit("skip");
 		changeCred(User.cred - 20);
 	}
@@ -56,7 +56,6 @@ $("#skipSong").click(function(e){
 		alert("you dont have enough cred...");
 	}
 	
-
 });
 
 //update db with new cred amount after spending
@@ -122,6 +121,51 @@ $("#uploadTrack").click(function(e){
 	$("#uploadForm").toggle();
 	$("#navvv").css({"margin-bottom" : "0"});
 
+});
+
+$("#credUp").click(function(e){
+	e.preventDefault;
+
+	$("#credUp").toggle();
+	//get user
+	username = songQue[0].user;
+	usr = {};
+	$.ajax({
+    	url: "/users/users/?username=" + username,
+    	type: 'GET',
+    	success: function(result) {
+    		if (result[0]) {
+	    		usr.username = result[0].username;
+	    		usr.cred = result[0].cred;
+
+	    		console.log(usr.cred);
+	    		console.log(usr.cred);
+    newTotal = parseInt(usr.cred) + 5;
+   	console.log(newTotal);
+	//give cred to user
+	filter = 'find={"username":"' + usr.username; 
+	
+	filter += '"}&update={"$set":{"cred":"' +  newTotal + '"}}';
+	console.log(filter);
+	
+
+	 $.ajax({
+		url: "/users/users/",
+		data: filter,
+		type: 'POST',
+		success: function(result) {
+			console.log(result);
+			  
+		}
+	});
+    		}
+    		else{
+    			alert("couldn't find user");
+    		}
+    		
+    	}
+    });
+    
 });
 
 //hide/show sign in form
@@ -252,7 +296,7 @@ socket.on('getPlaylist', function(data){
 	
 	   
 	if($.isEmptyObject(CurrentSong)){
-		$("#title").html("Que empty :( upload a song!");
+		$("#title").html("Queue empty :( upload a song!");
 		
 	}
 	else{
@@ -271,7 +315,8 @@ function updatePageQue(data){
 	$('#que').empty();
 	var song = "";
 	console.log(data);
-	var sq = data.songQue
+	var sq = data.songQue;
+	songQue = data.songQue;
 	for(i = 0; i < data.songQue.length; i++){
 		console.log(sq);
 		song = sq[i].title + " - " + sq[i].artist;
@@ -279,12 +324,14 @@ function updatePageQue(data){
 	}
 	//update the music player
 	if(sq.length){
+	$("#credUp").show();
 	var aud = document.getElementById("playerSource");
 	//parse the song path
 	var sourcePath = sq[0].path.replace("public", "");
 	aud.src = sourcePath;
 	console.log(sourcePath);
 	var player = document.getElementById("player");
+	player.pause();
 	player.load();
 	//set play time
 	var startTime = data.startTime;

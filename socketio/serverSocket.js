@@ -6,7 +6,7 @@ exports.init = function(io) {
  var GuestNum = 0; // keep track of the number of guest for temp chat id's
 songQue = []; //playlist
 songStartTime = 0; //time the last song started streaming
-
+var tOut;
 
 
 
@@ -21,6 +21,7 @@ io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
      io.emit('chat message', msg);
     });
+  socket.on('skip', songOver);
 
     
 
@@ -41,6 +42,7 @@ exports.addSong = function(req, res) {
     song.music = "/uploads/" + req.files['song'][0].filename;
     song.title = req.body.title;
     song.artist = req.body.artist;
+    song.user = req.body.user;
     song.path = req.files['song'][0].path;
     mp3Duration(req.files['song'][0].path, function (err, duration) {
     if (err){ 
@@ -81,7 +83,7 @@ playSong = function(){
     console.log("Song started at time " + songStartTime);
     console.log("current song is " + songQue[0].duration + "long");
     var songLength = songQue[0].duration * 1000;
-    setTimeout(songOver, songLength);
+    tOut = setTimeout(songOver, songLength);
     io.emit('getPlaylist', {songQue : songQue, currentSong: songQue[0], startTime: songStartTime});
   }else{
     console.log("song list empty");
@@ -91,6 +93,7 @@ playSong = function(){
 
 songOver = function(){
     console.log("song ended ");
+    clearTimeout(tOut);
     nextSong();
 }
 

@@ -35,6 +35,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
 
 }
 
+#credUp{
+  margin: auto;
+  text-align: center;
+  display: none;
+  
+  width: 200px;
+
+}
+
 input{
    margin: auto;
 }
