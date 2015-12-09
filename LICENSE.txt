@@ -1,0 +1,1 @@
+PLEASE USE MY CODE FOR ANYTHING, (unless you are making money from it) (then please give me money).
