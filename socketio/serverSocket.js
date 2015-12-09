@@ -70,7 +70,7 @@ getSong =  function(){
 
 nextSong = function(){
   songQue.shift();
-
+  
   playSong();
 }
 

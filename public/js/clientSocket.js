@@ -34,17 +34,35 @@ function relog(){
 //plaecholder for spend cred options
 $("#spendCred").click(function(e){
 	//html changes
+	e.preventDefault;
+	
+	$("#credMenue").toggle();
+	$("#navvv").css({"margin-bottom" : "0"});
 
 	//change cred in db and locally
 	//hard value for now, will be value of request later
-	spendCred(20);
+	
+
+});
+
+$("#skipSong").click(function(e){
+	e.preventDefault;
+
+	if(User.cred > 20){
+		socket.emit("skip");
+		changeCred(User.cred - 20);
+	}
+	else{
+		alert("you dont have enough cred...");
+	}
+	
 
 });
 
 //update db with new cred amount after spending
-function spendCred(amount){
+function changeCred(amount){
 
-	var newTotal = User.cred - amount;
+	var newTotal = amount;
 	if (newTotal < 0) {
 		alert("You dont have enough cred, Loser.");
 		return;
@@ -116,6 +134,8 @@ $("#signIn").click(function(e){
 
 
 });
+
+
 
 
 function addGuestInfo(){

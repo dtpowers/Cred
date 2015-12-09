@@ -36,7 +36,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6a9d6', end
 }
 
 input{
-   text-align: center;
+   margin: auto;
 }
 
 
@@ -125,7 +125,9 @@ input{
   top:1px;
 }
 
-
+#credMenue{
+  display: none;
+}
 
 
 
