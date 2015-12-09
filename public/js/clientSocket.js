@@ -248,14 +248,31 @@ socket.on('getPlaylist', function(data){
 
 //fill que on left side of screen
 function updatePageQue(data){
+	$('#que').empty();
 	var song = "";
 	console.log(data);
 	var sq = data.songQue
 	for(i = 0; i < data.songQue.length; i++){
 		console.log(sq);
-		song = sq[0].title + " - " + sq[0].artist;
+		song = sq[i].title + " - " + sq[i].artist;
 		$('#que').append($('<li>').text(song));
 	}
+	//update the music player
+	if(sq.length){
+	var aud = document.getElementById("playerSource");
+	//parse the song path
+	var sourcePath = sq[0].path.replace("public", "");
+	aud.src = sourcePath;
+	console.log(sourcePath);
+	var player = document.getElementById("player");
+	player.load();
+	//set play time
+	var startTime = data.startTime;
+	var currTime = new Date().getTime() / 1000;
+	player.currentTime = currTime - startTime;
+	player.play();
+}
+
 
 }
 

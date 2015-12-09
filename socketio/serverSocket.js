@@ -16,7 +16,7 @@ console.log("IO initialized");
 io.on('connection', function(socket){
 
 	++GuestNum;  
-	io.emit('getPlaylist', {songQue : songQue, currentSong: songQue[0]});
+	io.emit('getPlaylist', {songQue : songQue, currentSong: songQue[0], startTime: songStartTime});
     io.emit('guest', {number : GuestNum});
 	socket.on('chat message', function(msg){
      io.emit('chat message', msg);
@@ -41,6 +41,7 @@ exports.addSong = function(req, res) {
     song.music = "/uploads/" + req.files['song'][0].filename;
     song.title = req.body.title;
     song.artist = req.body.artist;
+    song.path = req.files['song'][0].path;
     mp3Duration(req.files['song'][0].path, function (err, duration) {
     if (err){ 
       song.duration = "fail";
@@ -69,7 +70,7 @@ getSong =  function(){
 
 nextSong = function(){
   songQue.shift();
-  populateSongList();
+
   playSong();
 }
 
@@ -81,24 +82,17 @@ playSong = function(){
     console.log("current song is " + songQue[0].duration + "long");
     var songLength = songQue[0].duration * 1000;
     setTimeout(songOver, songLength);
+    io.emit('getPlaylist', {songQue : songQue, currentSong: songQue[0], startTime: songStartTime});
   }else{
     console.log("song list empty");
+    io.emit('getPlaylist', {songQue : songQue, currentSong: songQue[0], startTime: songStartTime});
   }
 }
 
 songOver = function(){
-    console.log("song ended \n\n\n\n\n\n\n\n\n\n");
+    console.log("song ended ");
     nextSong();
 }
-
-function populateSongList() {
-    //TODO
-    //Emit to client that queue has changed
-    //update que on all clients
-    return 5;
-
-}
-
 
 
 }

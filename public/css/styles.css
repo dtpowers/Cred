@@ -187,6 +187,10 @@ input{
     height: 300px;
 }
 
+#player{
+  display: none;
+}
+
 #que{
     list-style-type: none; 
 margin: 0; 
