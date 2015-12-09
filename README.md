@@ -1,0 +1,1 @@
+A web application for streaming and discovering independent music. Users gain cred based on how others receive their tracks, and can use it to have a bigger influence on the community.
