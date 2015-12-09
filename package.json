@@ -1,13 +1,17 @@
 {
-  "name": "crudhw",
+  "name": "cred",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "credddd",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">= 0.10.0",
+    "npm": ">= 1.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.14.1",
     "ejs": "^1.0.0",
@@ -15,6 +19,7 @@
     "mongod": "^1.3.0",
     "mongodb": "^2.0.48",
     "morgan": "^1.6.1",
-    "mp3-duration": "^1.0.5"
+    "mp3-duration": "^1.0.5",
+    "multer": "^1.1.0"
   }
 }
