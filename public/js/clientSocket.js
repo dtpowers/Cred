@@ -1,4 +1,5 @@
-var socket = io();
+var socket = io.connect("http://credtest-dtpowers.rhcloud.com:8000");
+//var socket = io.connect();
 var User = {};
 var GuestNum = 0;
 var SongQue = [];

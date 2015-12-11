@@ -28,13 +28,7 @@ io.on('connection', function(socket){
 });
 
 
-
 var mp3Duration = require('mp3-duration');
- 
-
-
-
-
 
 exports.addSong = function(req, res) {
     var song = {}

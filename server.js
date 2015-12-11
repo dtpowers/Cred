@@ -20,7 +20,8 @@ var upload = multer({storage : storage});
 
 var app = express();
 
-
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);  
+app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");  
 // Set the views directory
 app.set('views', __dirname + '/views');
 
@@ -43,6 +44,7 @@ fs.readdirSync('./routes').forEach(function (file){
 // Boilerplate for setting up socket.io alongside Express.
 var httpServer = require('http').createServer(app);
 var sio = require('socket.io')(httpServer);
+
 
 // The server socket.io code is in the socketio directory.
 require('./socketio/serverSocket.js').init(sio);
